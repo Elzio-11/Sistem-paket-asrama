@@ -1485,6 +1485,47 @@ document.addEventListener('DOMContentLoaded', ()=>{
   // Inisialisasi Firebase
   firebase.initializeApp(firebaseConfig);
   const db = firebase.database(); // Menghubungkan ke Realtime Database
+
+  function tambahPaketBaru(idPaket, namaPenerima, noResi, asrama) {
+      database.ref('daftar_paket/' + idPaket).set({
+        namaPenerima: namaPenerima,
+        noResi: noResi,
+        asrama: asrama,
+        waktu: new Date().toLocaleString()
+      }).then(() => {
+        alert("Data berhasil tersimpan ke cloud!");
+      }).catch((error) => {
+        console.error("Gagal menyimpan:", error);
+      });
+    }
+
+    // B. Fungsi Membaca Data Realtime (Otomatis berjalan saat web dibuka)
+    function listenDataPaket() {
+      database.ref('daftar_paket').on('value', (snapshot) => {
+        const data = snapshot.val();
+        const tabelPaket = document.getElementById('tabel-paket'); // Sesuaikan ID elemen tabel/list Anda
+        
+        if (!tabelPaket) return;
+        tabelPaket.innerHTML = '';
+
+        if (data) {
+          Object.keys(data).forEach((key) => {
+            const item = data[key];
+            tabelPaket.innerHTML += `
+              <tr>
+                <td>${item.namaPenerima}</td>
+                <td>${item.noResi}</td>
+                <td>${item.asrama}</td>
+                <td>${item.waktu}</td>
+              </tr>
+            `;
+          });
+        }
+      });
+    }
+
+    // Jalankan pembaca data saat halaman siap
+    document.addEventListener('DOMContentLoaded', listenDataPaket);
 </script>
   }
 </script>
