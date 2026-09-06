@@ -1500,6 +1500,34 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
 
     // B. Fungsi Membaca Data Realtime (Otomatis berjalan saat web dibuka)
+  // Contoh Logika Perubahan Status Paket
+const statusEnum = {
+  WAITING: 'Menunggu',
+  ARRIVED: 'Tiba',
+  RECEIVED: 'Diterima'
+};
+
+// Fungsi verifikasi item yang diperbolehkan
+function verifikasiPaket(namaBarang) {
+  const barangTerlarang = ['sajam', 'rokok', 'elektronik terlarang'];
+  const isTerlarang = barangTerlarang.some(item => namaBarang.toLowerCase().includes(item));
+  
+  if (isTerlarang) {
+    return { diizinkan: false, pesan: 'Paket mengandung barang yang tidak diperbolehkan!' };
+  }
+  return { diizinkan: true, pesan: 'Paket aman dan terverifikasi.' };
+}
+
+// Fungsi pembaruan status penerimaan oleh siswa
+function perbaruiStatusPaket(idPaket, statusBaru, namaSiswa) {
+  console.log(`Paket #${idPaket} milik ${namaSiswa} telah diubah statusnya menjadi: ${statusBaru}`);
+  return {
+    idPaket,
+    namaSiswa,
+    status: statusBaru,
+    waktuPembaruan: new Date().toLocaleString('id-ID')
+  };
+}
     function listenDataPaket() {
       database.ref('daftar_paket').on('value', (snapshot) => {
         const data = snapshot.val();
