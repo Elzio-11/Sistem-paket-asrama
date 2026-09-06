@@ -1472,46 +1472,20 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 <script>
   const firebaseConfig = {
-    apiKey: "AIzaSyAeLqm3AUGHZJ44dbacH_v2nh4uDmtnJuY",
-    authDomain: "sistem-paket-asrama.firebaseapp.com",
-    databaseURL: "https://sistem-paket-asrama-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "sistem-paket-asrama",
-    storageBucket: "sistem-paket-asrama.firebasestorage.app",
-    messagingSenderId: "428275258251",
-    appId: "1:428275258251:web:b25601cc81b3aff5d9558e",
-    measurementId: "G-H4KBJMDV81"
+  apiKey: "AIzaSyAeLqm3AUGhZJ44dbacH_v2nh4uDmtnJuY",
+  authDomain: "sistem-paket-asrama.firebaseapp.com",
+  databaseURL: "https://sistem-paket-asrama-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "sistem-paket-asrama",
+  storageBucket: "sistem-paket-asrama.firebasestorage.app",
+  messagingSenderId: "428275258251",
+  appId: "1:428275258251:web:b25601cc81b3aff5d8558e",
+  measurementId: "G-H4KBJMDV81"
   };
 
   // Inisialisasi Firebase
   firebase.initializeApp(firebaseConfig);
   const db = firebase.database(); // Menghubungkan ke Realtime Database
 </script>
-  <script>
-  // 1. Fungsi Navigasi Tab
-  const navButtons = document.querySelectorAll('nav.tabs button');
-  const views = document.querySelectorAll('.view');
-
-  navButtons.forEach((btn, index) => {
-    btn.addEventListener('click', () => {
-      navButtons.forEach(b => b.classList.remove('active'));
-      views.forEach(v => v.classList.remove('active'));
-
-      btn.classList.add('active');
-      if (views[index]) {
-        views[index].classList.add('active');
-      }
-    });
-  });
-
-  // 2. Fungsi Buka/Tutup Modal
-  function openModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if(modal) modal.classList.add('show');
-  }
-
-  function closeModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if(modal) modal.classList.remove('show');
   }
 </script>
 </body>
